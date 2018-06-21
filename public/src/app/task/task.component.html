@@ -1,0 +1,12 @@
+<div>
+    <div>
+        <h1>Baked by: {{displayinfo.title}}</h1>
+  <img src="{{displayinfo.description}}" alt="cake" height="150" width="150">
+  <div style="overflow-y: scroll; height:150px;" >
+  <div *ngFor = "let reviews of displayinfo.review" style="border: 1px solid black">
+        <p>Rating: {{reviews.rating}}</p>
+        <p>Review: {{reviews.comment}}</p>
+  </div>
+  </div>
+   </div> 
+   </div>

@@ -1,0 +1,39 @@
+<div class="root">  <!-- tip: use css to place a border around your different components to better visualize them -->
+    <h1>Rate my cakes</h1>
+    <div>
+            <h1>Submit Cake to be rated</h1>
+            <form (submit)="onSubmit()" class="theForm">
+                <p>{{newTask | json}}</p>
+                <label>Baker Name:</label>
+                <input type="text" name="newTask.title" [(ngModel)] ="newTask.title" >
+                <label>Cake URL</label>
+                <input type="text" name="newTask.description" [(ngModel)] ="newTask.description" >
+                <input type="submit" value="Create Task">
+              </form>
+        </div>     <!-- use the selector of the task component to nest it within the root component -->
+
+    <div style="overflow-y: scroll; height:500px;">
+     <div *ngFor = "let task of tasks">
+    <p>Baker: {{task['title']}}</p>
+    <img (click)="displayinfo(task)" src="{{task['description']}}" alt="cake" height="150" width="150">
+        <form (submit)="onSubmitEdit(task)" class="newForm">
+            <input type="hidden" name="task.id" [(ngModel)] ="taske._id" >
+            <label>Rating</label>
+            <select name="task.rating" [(ngModel)] ="taske.rating" >
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label>Task description</label>
+            <input type="text" name="task.comment" [(ngModel)] ="taske.comment" >
+            <input type="submit" value="Update Task">
+          </form>
+    </div>
+</div>
+    <app-task *ngIf= "desc" [displayinfo]="selectedTask">
+    </app-task>
+    
+</div>
+
